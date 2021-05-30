@@ -28,6 +28,7 @@ class FirstFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        communicator = activity as Communicator
         return inflater.inflate(R.layout.fragment_first, container, false)
     }
 
@@ -38,13 +39,11 @@ class FirstFragment : Fragment() {
 
         val result = arguments?.getInt(PREVIOUS_RESULT_KEY)
         previousResult?.text = "Previous result: ${result.toString()}"
-        communicator = activity as Communicator
+
         // TODO: val min = ...
         val min = view.findViewById<EditText>(R.id.min_value)
-
         // TODO: val max = ...
         val max = view.findViewById<EditText>(R.id.max_value)
-
 
         generateButton?.setOnClickListener {
             if(validationCheck(min,max)) {
@@ -83,7 +82,6 @@ class FirstFragment : Fragment() {
         val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(windowToken, 0)
     }
-
 
     companion object {
 
